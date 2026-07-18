@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshKeep - Fish Warehouse</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        
+        <img src="img/logo.png" alt="FreshKeep Logo" class="logo">
+
+        <h1>Fresh<span>Keep</span></h1>
+        <p class="subtitle">Fish Warehouse Management System 🐟</p>
+
+        <!-- 🔥 FIX DISINI -->
+        <form class="login-form" onsubmit="return login()">
+
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+
+            <div class="options">
+                <label>
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+    </div>
+
+    <!-- 🔥 SCRIPT -->
+    <script>
+        function login() {
+            window.location.href = "dashboard.html";
+            return false;
+        }
+    </script>
+
+</body>
+</html>

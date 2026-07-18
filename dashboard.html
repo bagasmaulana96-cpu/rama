@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FreshKeep - Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+        <header class="header">
+
+        <div class="logo-header">
+            <img src="img/logo.png" alt="">
+            <h2>FreshKeep</h2>
+        </div>
+
+        <div class="menu-header">
+
+            <button
+            id="btnInput"
+            class="menu-btn active"
+            onclick="showInput()">
+
+            Input Data
+
+            </button>
+
+            <button
+                id="btnData"
+                class="menu-btn"
+                onclick="showData()">
+
+                Data Gudang
+
+            </button>
+
+            <button class="logout-btn"
+                onclick="logout()">
+                Keluar
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- MAIN -->
+    <!-- ================= INPUT DATA ================= -->
+
+<section id="inputSection" class="main">
+
+    <div class="title">
+        <h1>Input Data Gudang</h1>
+        <p>Kelola data hasil laut dengan mudah dan terstruktur</p>
+    </div>
+
+    <div class="card">
+
+        <form id="formHasilLaut" autocomplete="off"> 
+
+            <div class="grid">
+
+                <!-- Nama Pemilik -->
+                <div class="input-group">
+                    <label>Nama Pemilik</label>
+
+                    <input
+                        type="text"
+                        id="nama_pemilik"
+                        placeholder="Masukkan nama pemilik"
+                        required>
+
+                </div>
+
+                <!-- Jenis Produk -->
+                <div class="input-group">
+
+                    <label>Jenis Produk</label>
+
+                    <select
+                        id="jenis_produk"
+                        onchange="updateList()"
+                        required>
+
+                        <option value="">
+                            -- Pilih Jenis Produk --
+                        </option>
+
+                        <option value="ikan">
+                            Ikan
+                        </option>
+
+                        <option value="udang">
+                            Udang
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Nama Produk -->
+                <div class="input-group">
+
+                    <label>Nama Produk</label>
+
+                    <select id="nama_produk">
+
+                        <option>
+                            -- Pilih jenis produk terlebih dahulu --
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Ukuran -->
+                <div class="input-group">
+
+                    <label>Ukuran</label>
+
+                    <select id="ukuran">
+
+                        <option>Besar</option>
+                        <option>Sedang</option>
+                        <option>Kecil</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Cek Kesegaran -->
+                <div class="input-group full">
+
+                    <label>Cek Kesegaran Detail</label>
+
+                    <div
+                        id="cekKesegaran"
+                        class="radio-group">
+
+                        <p style="font-size:12px;color:#888;">
+                            Pilih jenis produk terlebih dahulu
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Tingkat Kesegaran -->
+                <div class="input-group full">
+
+                    <label>Tingkat Kesegaran</label>
+
+                    <div class="result-box">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="kesegaran_final"
+                                value="Sangat Segar">
+
+                            Sangat Segar (Pre-Rigor)
+
+                        </label>
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="kesegaran_final"
+                                value="Segar">
+
+                            Segar (Rigor Mortis)
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- Total Berat -->
+                <div class="input-group">
+
+                    <label>Total Berat</label>
+
+                    <input
+                        id="total_berat"
+                        type="text"
+                        placeholder="500 Kg">
+
+                </div>
+
+                <!-- Jumlah Box -->
+                <div class="input-group">
+
+                    <label>Jumlah Box</label>
+
+                    <input
+                        id="jumlah_box"
+                        type="number"
+                        placeholder="Jumlah Box">
+
+                </div>
+
+                <!-- Lokasi Penyimpanan -->
+                <div class="input-group">
+
+                    <label>Lokasi Penyimpanan</label>
+
+                    <div class="radio-group">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="gudang"
+                                value="Gudang 1">
+
+                            Gudang 1
+
+                        </label>
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="gudang"
+                                value="Gudang 2">
+
+                            Gudang 2
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- Harga -->
+                <div class="input-group">
+
+                    <label>Harga Pengambilan</label>
+
+                    <div class="input-rp">
+
+                        <span>Rp.</span>
+
+                        <input
+                            id="harga"
+                            type="text"
+                            placeholder="0"
+                            onkeyup="formatRupiah(this)">
+
+                    </div>
+
+                </div>
+
+                <!-- Distribusi -->
+                <div class="input-group">
+
+                    <label>Jenis Distribusi</label>
+
+                    <select id="jenis_distribusi">
+
+                        <option value="Ekspor">
+                            Ekspor
+                        </option>
+
+                        <option value="Impor">
+                            Impor
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button
+                id="submitBtn"
+                type="submit"
+                class="btn">
+
+                💾 Simpan Data
+
+            </button>
+
+            <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="resetForm()">
+
+            🔄 Reset
+
+        </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- ================= DATA GUDANG ================= -->
+
+<section
+    id="dataSection"
+    class="main"
+    style="display:none;">
+
+    <div class="section-header">
+
+        <div class="section-header-text">
+            <h1>Data Gudang</h1>
+            <p>Lihat seluruh data hasil laut yang tersimpan pada database Supabase.</p>
+        </div>
+
+        <div class="section-header-actions">
+
+            <button class="btn-outline" onclick="exportData()">
+                ⬇ Export
+            </button>
+
+            <button class="btn-primary" onclick="showInput()">
+                + Tambah Data
+            </button>
+
+        </div>
+
+    </div>
+
+    
+    <!-- TABEL -->
+
+    <div class="data-card">
+
+        <div class="tabs-row">
+
+            <div class="tabs">
+
+                <button class="tab-btn active" data-tab="semua" onclick="filterTab('semua', this)">
+                    Semua Data
+                </button>
+
+                <button class="tab-btn" data-tab="ikan" onclick="filterTab('ikan', this)">
+                    Produk Ikan
+                </button>
+
+                <button class="tab-btn" data-tab="udang" onclick="filterTab('udang', this)">
+                    Produk Udang
+                </button>
+
+            </div>
+
+            <div class="tabs-tools">
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔍 Cari nama pemilik atau produk..."
+                        onkeyup="searchData()">
+
+                </div>
+
+                <button class="tool-btn" onclick="loadData()">
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="data-table modern-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="col-check">
+                            <input type="checkbox" id="checkAll" onclick="toggleAllCheck(this)">
+                        </th>
+
+                        <th>Produk</th>
+                        <th>Pemilik</th>
+                        <th>Ukuran</th>
+                        <th>Berat / Box</th>
+                        <th>Gudang</th>
+                        <th>Harga</th>
+                        <th>Kesegaran</th>
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tableData">
+
+                    <tr>
+
+                        <td colspan="9" style="text-align:center">
+                            Loading...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="table-footer">
+
+            <span class="page-info" id="pageInfo">
+                Halaman 1 dari 1
+            </span>
+
+            <div class="page-numbers" id="pageNumbers">
+
+                <button id="prevBtn" onclick="prevPage()">‹</button>
+
+                <!-- nomor halaman dirender otomatis oleh JS -->
+
+                <button id="nextBtn" onclick="nextPage()">›</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="js/supabase.js"></script>
+
+    <script src="js/dashboard.js"></script>
+
+
+    <div
+    id="loading"
+    class="loading"
+    style="display:none;">
+
+    <div class="loading-box">
+
+        ⏳ Memproses Data...
+
+    </div>
+
+</div>
+
+</body>
+
+<footer class="footer">
+
+    <p>
+        FreshKeep © 2026
+    </p>
+
+    <small>
+        Warehouse Management System
+    </small>
+
+</footer>
+
+</body>
+</html>
